@@ -80,16 +80,15 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/Cyder-SG/reactjs-qrcode-scanner
    ```
-3. Install NPM packages
+2. Install NPM packages
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
+3. Enter your API in `config.js`
    ```JS
    const API_KEY = 'ENTER YOUR API';
    ```
@@ -115,7 +114,7 @@ Distributed under the Apache 2.0 License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Fernando Karnagui - fkarnagi@gmail.com or fernando@cyder.com.sg
+Fernando Karnagi - fkarnagi@gmail.com or fernando@cyder.com.sg
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
