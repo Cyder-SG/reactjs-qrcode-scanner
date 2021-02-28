@@ -1,0 +1,5 @@
+package-lock.json
+.eslintrc.js
+src/ui-elements/**
+src/locale/**
+*.md
