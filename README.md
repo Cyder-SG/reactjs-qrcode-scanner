@@ -7,11 +7,6 @@
   <p align="center">
     An awesome example to read QR Code in ReactJS web application
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
-    ·
     <a href="https://github.com/Cyder-SG/reactjs-qrcode-scanner/issues">Report Bug</a>
     ·
     <a href="https://github.com/Cyder-SG/reactjs-qrcode-scanner/issues">Request Feature</a>
