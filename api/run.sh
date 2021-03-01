@@ -1,4 +1,1 @@
-#!/bin/bash
-
-export PORT=3001
-npm start
+mvn spring-boot:run

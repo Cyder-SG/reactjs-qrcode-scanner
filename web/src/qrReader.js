@@ -1,8 +1,11 @@
 /** @format */
 
 import React, { useEffect, useRef, useState } from 'react';
+import axios from 'axios';
+
 const QReader = ({ facingMode }) => {
 
+    const [text, setText] = useState(null);
     const [cameraId, setCameraId] = useState(null);
     const [cameraPlaying, setCameraPlaying] = useState(false);
 
@@ -14,11 +17,34 @@ const QReader = ({ facingMode }) => {
         const videoElement = document.querySelector('video');
         videoElement.srcObject = stream;
 
-        // setInterval(checkQrCode, 1000);
-        checkQrCode();
+        setInterval(checkQrCode, 5000);
 
         // refresh button list in case labels have become available
         return navigator.mediaDevices.enumerateDevices();
+    }
+
+    const uploadToServer = async (base64Str) => {
+
+        // prepare the base64 image
+        // const base64 = 'data:image/png;base64,' + base64Str;
+
+        // convert base64 to post body blob
+        const blob = await fetch(base64Str).then(res => res.blob());
+
+        const formData = new FormData();
+        formData.append('qr_base64', blob, 'qr_code.png');
+
+        // Post the form, just make sure to set the 'Content-Type' header
+        const res = await axios.post('http://localhost:8080/upload', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+
+        // print status
+        if (res.data) {
+            setText(res.data.qrText);
+        }
     }
 
     const imgToBase64 = (img) => {
@@ -37,9 +63,10 @@ const QReader = ({ facingMode }) => {
 
     const checkQrCode = () => {
         window.imageCapture.grabFrame()
-            .then(imageBitmap => { 
+            .then(imageBitmap => {
                 const imageBase64 = imgToBase64(imageBitmap);
-                console.log("get image bitmap")
+                console.log("get image bitmap and uploading to server");
+                uploadToServer(imageBase64);
             })
             .catch(error => {
                 console.log("error during image capture: ", error)
@@ -141,6 +168,9 @@ const QReader = ({ facingMode }) => {
                     setCameraPlaying(true);
                 }} id="video" playsInline autoPlay></video>
 
+            <p>
+                Last detected QR:<br/><br/>{text}
+            </p>
         </div>
     )
 
